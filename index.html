@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Toi, Ma Princesse ✨</title>
+    <style>
+        /* Fond magique avec effet animé */
+        body {
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7, #fad0c4);
+            background-size: 400% 400%;
+            animation: fondAnime 8s infinite alternate;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        @keyframes fondAnime {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Texte scintillant */
+        h1 {
+            font-size: 32px;
+            margin-top: 20px;
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.8);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8); }
+            to { text-shadow: 0px 0px 20px rgba(255, 255, 255, 1); }
+        }
+
+        /* Message doux dans une carte */
+        #message {
+            font-size: 22px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #message:hover {
+            transform: scale(1.05);
+        }
+
+        /* Bouton élégant */
+        #changerMessage {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0px 4px 10px rgba(255, 0, 100, 0.4);
+        }
+
+        #changerMessage:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 0, 100, 0.6);
+        }
+
+        /* Cœurs flottants */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-150px) scale(1.2); opacity: 0.6; }
+            100% { transform: translateY(-300px) scale(0.8); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>✨ Pour Toi, Ma Princesse ✨</h1>
+    <p id="message">Ma princesse, respire doucement… Je suis là pour toi. 💖</p>
+    <button id="changerMessage">Un autre message 💕</button>
+
+    <audio id="musique" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Liste des messages doux
+        const messages = [
+            "Ma princesse, respire doucement… Je suis là pour toi. 💖",
+            "Mon étoile, même les nuits sombres passent, et tu brilleras encore plus fort. ✨",
+            "Mon ange, repose-toi un instant… Tu es précieuse et importante pour moi . 🕊️",
+            "Un sourire de toi illumine ma journée, essaie juste pour moi. 😊",
+            "Peu importe ce qui arrive, je ne veux qu'une chose : que tu sois heureuse. ❤️",
+            "Ma lumière, je serai toujours là pour t’éclairer dans l’ombre. 🌟",
+            "Hanoniii, si jamais tu doutes, souviens-toi à quel point tu es merveilleuse et magnifique. 🎀",
+            "Chaque jour à tes côtés est un cadeau, ma princesse. 🎁"
+        ];
+
+        // Changer le message quand on clique sur le bouton
+        document.getElementById("changerMessage").addEventListener("click", function() {
+            const message = document.getElementById("message");
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            message.innerText = messages[randomIndex];
+        });
+
+        // Lancer la musique en arrière-plan (Chrome nécessite une interaction utilisateur)
+        document.getElementById("changerMessage").addEventListener("click", function() {
+            document.getElementById("musique").play();
+        });
+
+        // Créer des cœurs animés
+        function creerCoeur() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 4 + "s";
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        setInterval(creerCoeur, 500);
+    </script>
+</body>
+</html>
